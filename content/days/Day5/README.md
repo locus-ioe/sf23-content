@@ -5,5 +5,4 @@ tags: []
 draft: false
 ---
 
-## Introduction
-Day 1 content here!
+DAY 5 here
