@@ -1,0 +1,442 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Day 5: (Part 1) Data, Data and More Data!</title><style>html body{font-family:raleway,sans-serif;background-color:#fff}:root{--accent:purple;--border-width:5px}</style><link rel=stylesheet href=http://sf23.locus.com.np/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Raleway"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js></script>
+<script>hljs.initHighlightingOnLoad()</script><script src=https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js></script>
+<script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script>
+<script>$(document).on("click",function(){$(".collapse").collapse("hide")})</script><meta name=generator content="Hugo 0.101.0"><script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body><nav class="navbar navbar-default navbar-fixed-top"><div class=container><div class=navbar-header><a class="navbar-brand visible-xs" href=#>Day 5: (Part 1) Data, Data and More Data!</a>
+<button class=navbar-toggle data-target=.navbar-collapse data-toggle=collapse>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span></button></div><div class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href=/>Home</a></li><li><a href=/about/>About</a></li><li><a href=/days/>Content</a></li></ul><ul class="nav navbar-nav navbar-right"><li class=navbar-icon><a href=mailto:neupane0403@gmail.com><i class="fas fa-envelope"></i></a></li><li class=navbar-icon><a href=https://github.com/Atomnp/><i class="fab fa-github"></i></a></li></ul></div></div></nav><main><div><h2>Day 5: (Part 1) Data, Data and More Data!</h2><h5></h5><a href=http://sf23.locus.com.np/tags/numpy><kbd class=item-tag>numpy</kbd></a>
+<a href=http://sf23.locus.com.np/tags/pandas><kbd class=item-tag>pandas</kbd></a></div><div align=start class=content><h1 id=numpy>Numpy</h1><h2 id=why-numpy>Why numpy??</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> timeit <span style=color:#f92672>import</span> timeit
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>NPFunc</span>():
+</span></span><span style=display:flex><span>    np<span style=color:#f92672>.</span>sum(np<span style=color:#f92672>.</span>power(np<span style=color:#f92672>.</span>arange(<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>2000000</span>), <span style=color:#ae81ff>2</span>))
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>None</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>PyFunc</span>():
+</span></span><span style=display:flex><span>    sum([x<span style=color:#f92672>*</span>x <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>2000000</span>)])
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>None</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>print(timeit(NPFunc, number<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>))
+</span></span><span style=display:flex><span>print(timeit(PyFunc, number<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>))
+</span></span></code></pre></div><pre><code>0.029838398999999072
+0.4973828640000022
+</code></pre><p>Numpy operations are a lot faster than built in python operations.</p><h2 id=numpy-array-declaration-and-initialization>Numpy array declaration and initialization</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>arr1 <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>array([]) <span style=color:#75715e># declares an empty array</span>
+</span></span><span style=display:flex><span>print(arr1)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>sample_list <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>]
+</span></span><span style=display:flex><span>arr2 <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>array(sample_list) <span style=color:#75715e># initializes a numpy array using python list</span>
+</span></span><span style=display:flex><span>print(arr2)
+</span></span></code></pre></div><pre><code>[]
+[1 2 3 4 5]
+</code></pre><h2 id=creating-1d-and-2d-array-and-initialize-with-zero>Creating 1D and 2D array and initialize with zero</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e>#creates 1D array containing zeros</span>
+</span></span><span style=display:flex><span>np<span style=color:#f92672>.</span>zeros(shape<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>)
+</span></span></code></pre></div><pre><code>array([0., 0., 0.])
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e>#creates 2D array containing zeros</span>
+</span></span><span style=display:flex><span>np<span style=color:#f92672>.</span>zeros(shape<span style=color:#f92672>=</span>(<span style=color:#ae81ff>3</span>,<span style=color:#ae81ff>3</span>))<span style=color:#75715e>#tuple must be provided as an input,(3,3) makes 2D matrix of size 3*3</span>
+</span></span></code></pre></div><pre><code>array([[0., 0., 0.],
+       [0., 0., 0.],
+       [0., 0., 0.]])
+</code></pre><h2 id=creating-1d-and-2d-array-and-initialize-with-one>Creating 1D and 2D array and initialize with one</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e>#creates 1D array containing ones</span>
+</span></span><span style=display:flex><span>np<span style=color:#f92672>.</span>ones(shape<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>)
+</span></span></code></pre></div><pre><code>array([1., 1., 1.])
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e>#creates 2D array containing ones</span>
+</span></span><span style=display:flex><span>np<span style=color:#f92672>.</span>ones(shape<span style=color:#f92672>=</span>(<span style=color:#ae81ff>3</span>,<span style=color:#ae81ff>2</span>))
+</span></span></code></pre></div><pre><code>array([[1., 1.],
+       [1., 1.],
+       [1., 1.]])
+</code></pre><h2 id=creating-identity-matrix>Creating identity matrix</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>np<span style=color:#f92672>.</span>eye(<span style=color:#ae81ff>4</span>) <span style=color:#75715e>#4*4 identity matrix</span>
+</span></span></code></pre></div><pre><code>array([[1., 0., 0., 0.],
+       [0., 1., 0., 0.],
+       [0., 0., 1., 0.],
+       [0., 0., 0., 1.]])
+</code></pre><h2 id=random-values>Random values</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e>#1D array</span>
+</span></span><span style=display:flex><span>np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>rand(<span style=color:#ae81ff>5</span>)<span style=color:#75715e># Generate an array of random values of length 5 and values lies between 0 &amp; 1</span>
+</span></span></code></pre></div><pre><code>array([0.94558025, 0.95947647, 0.19921073, 0.13523719, 0.55870915])
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e>#2D array</span>
+</span></span><span style=display:flex><span>np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>rand(<span style=color:#ae81ff>2</span>,<span style=color:#ae81ff>3</span>)<span style=color:#75715e># Generate an array of random values of shape 2*3</span>
+</span></span></code></pre></div><pre><code>array([[0.602467  , 0.44441528, 0.54233334],
+       [0.926806  , 0.11022771, 0.82283922]])
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>randint(<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>100</span>)<span style=color:#75715e># select a random integer between 1 to 100</span>
+</span></span></code></pre></div><pre><code>74
+</code></pre><h2 id=attributes-of-numpy-array>Attributes of numpy array</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>x <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>array([<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>])<span style=color:#75715e>#1D</span>
+</span></span><span style=display:flex><span>y <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>array([<span style=color:#ae81ff>1.1</span>, <span style=color:#ae81ff>2.8</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>3</span>])<span style=color:#75715e>#1D</span>
+</span></span><span style=display:flex><span>z <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>rand(<span style=color:#ae81ff>3</span>,<span style=color:#ae81ff>4</span>)<span style=color:#75715e>#2D</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>x<span style=color:#f92672>.</span>dtype<span style=color:#75715e># returns the data type of numpy array</span>
+</span></span></code></pre></div><pre><code>dtype('int64')
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>y<span style=color:#f92672>.</span>dtype
+</span></span></code></pre></div><pre><code>dtype('float64')
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>x<span style=color:#f92672>.</span>astype(dtype<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;float64&#39;</span>)<span style=color:#75715e>#changes the data type of the numpy array</span>
+</span></span></code></pre></div><pre><code>array([1., 2., 3.])
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>y<span style=color:#f92672>.</span>astype(dtype<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;int64&#39;</span>)
+</span></span></code></pre></div><pre><code>array([1, 2, 1, 3])
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>x<span style=color:#f92672>.</span>ndim <span style=color:#75715e>#gives the number of dimension in the array</span>
+</span></span></code></pre></div><pre><code>1
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>z<span style=color:#f92672>.</span>ndim
+</span></span></code></pre></div><pre><code>2
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>x<span style=color:#f92672>.</span>shape <span style=color:#75715e>#gives the shape of an array</span>
+</span></span></code></pre></div><pre><code>(3,)
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>z<span style=color:#f92672>.</span>shape
+</span></span></code></pre></div><pre><code>(3, 4)
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>x<span style=color:#f92672>.</span>size <span style=color:#75715e>#gives total number of elements in the array</span>
+</span></span></code></pre></div><pre><code>3
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>z<span style=color:#f92672>.</span>size
+</span></span></code></pre></div><pre><code>12
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e>#reshape an array from 1D to 2D</span>
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;y before reshape:</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>{</span>y<span style=color:#e6db74>}</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;y after reshape: </span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>{</span>y<span style=color:#f92672>.</span>reshape(<span style=color:#ae81ff>2</span>,<span style=color:#ae81ff>2</span>)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)<span style=color:#75715e>#reshapes the array --&gt;size of the array should be same while reshaping</span>
+</span></span></code></pre></div><pre><code>y before reshape:
+[1.1 2.8 1.  3. ]
+
+y after reshape: 
+[[1.1 2.8]
+ [1.  3. ]]
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;z before reshape:</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>{</span>z<span style=color:#e6db74>}</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>)<span style=color:#75715e># 3 rows 4 cloumns</span>
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;z after reshape:</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>{</span>z<span style=color:#f92672>.</span>reshape(<span style=color:#ae81ff>4</span>,<span style=color:#ae81ff>3</span>)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)<span style=color:#75715e>#reshapes to 4 rows 3 cloumns</span>
+</span></span></code></pre></div><pre><code>z before reshape:
+[[0.12975586 0.40850878 0.22285784 0.62197612]
+ [0.04590619 0.13044902 0.12605415 0.08418587]
+ [0.01843059 0.57758455 0.98372901 0.53596404]]
+
+z after reshape:
+[[0.12975586 0.40850878 0.22285784]
+ [0.62197612 0.04590619 0.13044902]
+ [0.12605415 0.08418587 0.01843059]
+ [0.57758455 0.98372901 0.53596404]]
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e>#converting multidimensional array to 1D array</span>
+</span></span><span style=display:flex><span>print(z<span style=color:#f92672>.</span>ravel())
+</span></span></code></pre></div><pre><code>[0.12975586 0.40850878 0.22285784 0.62197612 0.04590619 0.13044902
+ 0.12605415 0.08418587 0.01843059 0.57758455 0.98372901 0.53596404]
+</code></pre><h2 id=summary-statistics-in-the-array>Summary Statistics in the array</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># For 1D array</span>
+</span></span><span style=display:flex><span>mat1D<span style=color:#f92672>=</span>np<span style=color:#f92672>.</span>array([<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>2</span>,<span style=color:#ae81ff>3</span>,<span style=color:#ae81ff>4</span>,<span style=color:#ae81ff>5</span>,<span style=color:#ae81ff>6</span>,<span style=color:#ae81ff>7</span>])
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;mean: </span><span style=color:#e6db74>{</span>np<span style=color:#f92672>.</span>mean(mat1D)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;min: </span><span style=color:#e6db74>{</span>np<span style=color:#f92672>.</span>min(mat1D)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;max: </span><span style=color:#e6db74>{</span>np<span style=color:#f92672>.</span>max(mat1D)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;std: </span><span style=color:#e6db74>{</span>np<span style=color:#f92672>.</span>std(mat1D)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;median: </span><span style=color:#e6db74>{</span>np<span style=color:#f92672>.</span>median(mat1D)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print((<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;index of max element:</span><span style=color:#e6db74>{</span>np<span style=color:#f92672>.</span>argmax(mat1D)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>))
+</span></span></code></pre></div><pre><code>mean: 4.0
+min: 1
+max: 7
+std: 2.0
+median: 4.0
+index of max element:6
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># For 2D array</span>
+</span></span><span style=display:flex><span>axis <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>mat2D<span style=color:#f92672>=</span>np<span style=color:#f92672>.</span>array([[<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>7</span>,<span style=color:#ae81ff>3</span>],[<span style=color:#ae81ff>4</span>,<span style=color:#ae81ff>5</span>,<span style=color:#ae81ff>6</span>]])
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;array: </span><span style=color:#e6db74>{</span>mat2D<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;mean: </span><span style=color:#e6db74>{</span>np<span style=color:#f92672>.</span>mean(mat2D,axis<span style=color:#f92672>=</span>axis)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;min: </span><span style=color:#e6db74>{</span>np<span style=color:#f92672>.</span>min(mat2D,axis<span style=color:#f92672>=</span>axis)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;max: </span><span style=color:#e6db74>{</span>np<span style=color:#f92672>.</span>max(mat2D,axis<span style=color:#f92672>=</span>axis)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;std: </span><span style=color:#e6db74>{</span>np<span style=color:#f92672>.</span>std(mat2D,axis<span style=color:#f92672>=</span>axis)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;median: </span><span style=color:#e6db74>{</span>np<span style=color:#f92672>.</span>median(mat2D,axis<span style=color:#f92672>=</span>axis)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print((<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;index of max element:</span><span style=color:#e6db74>{</span>np<span style=color:#f92672>.</span>argmax(mat2D,axis<span style=color:#f92672>=</span>axis)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>))
+</span></span></code></pre></div><pre><code>array: [[1 7 3]
+ [4 5 6]]
+mean: [2.5 6.  4.5]
+min: [1 5 3]
+max: [4 7 6]
+std: [1.5 1.  1.5]
+median: [2.5 6.  4.5]
+index of max element:[1 0 1]
+</code></pre><p>parameter: axis defines the direction along which the operations are to be performed.</p><p><img src=/attachments/cbimage.png alt=image.png></p><h2 id=slicing-of-numpy-array>Slicing of numpy array</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e>#1D array</span>
+</span></span><span style=display:flex><span>array_slice1D<span style=color:#f92672>=</span>np<span style=color:#f92672>.</span>array([<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>2</span>,<span style=color:#ae81ff>3</span>,<span style=color:#ae81ff>5</span>,<span style=color:#ae81ff>6</span>])
+</span></span><span style=display:flex><span>array_slice1D[<span style=color:#ae81ff>1</span>:]
+</span></span></code></pre></div><pre><code>array([2, 3, 5, 6])
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e>#2D array</span>
+</span></span><span style=display:flex><span>array_slice2D<span style=color:#f92672>=</span>np<span style=color:#f92672>.</span>array([[<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>8</span>],
+</span></span><span style=display:flex><span>                        [<span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>6</span>,<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>4</span>],
+</span></span><span style=display:flex><span>                        [<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>6</span>,<span style=color:#f92672>-</span><span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>9</span>]])
+</span></span><span style=display:flex><span>array_slice2D[<span style=color:#ae81ff>1</span>:,<span style=color:#ae81ff>2</span>:]
+</span></span></code></pre></div><pre><code>array([[ 6, -1,  4],
+       [ 6, -8,  9]])
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>array_slice2D[:<span style=color:#ae81ff>2</span>,:<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>]
+</span></span></code></pre></div><pre><code>array([[1, 7, 3],
+       [4, 5, 6]])
+</code></pre><h2 id=conditional-selection>Conditional Selection</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>conditional_array<span style=color:#f92672>=</span>np<span style=color:#f92672>.</span>arange(<span style=color:#ae81ff>15</span>)
+</span></span><span style=display:flex><span>conditional_array
+</span></span></code></pre></div><pre><code>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14])
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>conditional_array[conditional_array<span style=color:#f92672>&gt;</span><span style=color:#ae81ff>12</span>]
+</span></span></code></pre></div><pre><code>array([13, 14])
+</code></pre><p>np.where vs list comprehension</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>np<span style=color:#f92672>.</span>array([i <span style=color:#66d9ef>if</span> i<span style=color:#f92672>&gt;</span><span style=color:#ae81ff>12</span> <span style=color:#66d9ef>else</span> <span style=color:#ae81ff>1</span> <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> conditional_array])
+</span></span></code></pre></div><pre><code>array([ 1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 13, 14])
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>np<span style=color:#f92672>.</span>where(conditional_array<span style=color:#f92672>&gt;</span><span style=color:#ae81ff>12</span>,conditional_array,<span style=color:#ae81ff>1</span>)
+</span></span></code></pre></div><pre><code>array([ 1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 13, 14])
+</code></pre><h1 id=pandas>Pandas</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> pandas <span style=color:#66d9ef>as</span> pd
+</span></span></code></pre></div><p>What is series and dataframe?</p><ul><li>Series is a one-dimensional labeled array capable of holding any data type (integers, strings, floating point numbers, Python objects, etc.). The axis labels are collectively referred to as the index.</li><li>DataFrame is a 2-dimensional labeled data structure with columns of potentially different types.</li></ul><h2 id=creating-series-from-python-dictionary>Creating Series from python dictionary</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>employee_dict<span style=color:#f92672>=</span>{
+</span></span><span style=display:flex><span>          <span style=color:#e6db74>&#39;name&#39;</span>:[<span style=color:#e6db74>&#39;Aayush&#39;</span>,<span style=color:#e6db74>&#39;Bishal&#39;</span>,<span style=color:#e6db74>&#39;Gaurav&#39;</span>,<span style=color:#e6db74>&#39;Kriti&#39;</span>,<span style=color:#e6db74>&#39;Manjeet&#39;</span>],
+</span></span><span style=display:flex><span>          <span style=color:#e6db74>&#39;roll_number&#39;</span>:[<span style=color:#ae81ff>7</span>,<span style=color:#ae81ff>28</span>,<span style=color:#ae81ff>37</span>,<span style=color:#ae81ff>43</span>,<span style=color:#ae81ff>48</span>]
+</span></span><span style=display:flex><span>          }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>name <span style=color:#f92672>=</span> pd<span style=color:#f92672>.</span>Series(employee_dict)
+</span></span><span style=display:flex><span>name
+</span></span></code></pre></div><pre><code>name           [Aayush, Bishal, Gaurav, Kriti, Manjeet]
+roll_number                         [7, 28, 37, 43, 48]
+dtype: object
+</code></pre><h2 id=creating-dataframe-from-list-of-python-dictionary>Creating Dataframe from list of python dictionary</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>employee_dict_df<span style=color:#f92672>=</span>pd<span style=color:#f92672>.</span>DataFrame(employee_dict)
+</span></span><span style=display:flex><span>employee_dict_df
+</span></span></code></pre></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre><p></p><p>&lt;svg xmlns=&ldquo;<a href=http://www.w3.org/2000/svg%22>http://www.w3.org/2000/svg"</a> height=&ldquo;24px"viewBox=&ldquo;0 0 24 24&rdquo;
+width=&ldquo;24px&rdquo;></p><p>Note: Difference between Series and DataFrame</p><ul><li>Series works in form of index and values</li><li>DataFrame is more like tabular form</li></ul><h2 id=creating-dataframe-from-python-list>Creating DataFrame from python list</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>employee_list<span style=color:#f92672>=</span>[[<span style=color:#e6db74>&#39;Aayush&#39;</span>,<span style=color:#ae81ff>7</span>],[<span style=color:#e6db74>&#39;Bishal&#39;</span>,<span style=color:#ae81ff>28</span>],[<span style=color:#e6db74>&#39;Gaurav&#39;</span>,<span style=color:#ae81ff>37</span>],[<span style=color:#e6db74>&#39;Kriti&#39;</span>,<span style=color:#ae81ff>43</span>],[<span style=color:#e6db74>&#39;Manjeet&#39;</span>,<span style=color:#ae81ff>48</span>]]
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>employee_list_df<span style=color:#f92672>=</span>pd<span style=color:#f92672>.</span>DataFrame(employee_list)
+</span></span><span style=display:flex><span>employee_list_df
+</span></span></code></pre></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre><p></p><p>&lt;svg xmlns=&ldquo;<a href=http://www.w3.org/2000/svg%22>http://www.w3.org/2000/svg"</a> height=&ldquo;24px"viewBox=&ldquo;0 0 24 24&rdquo;
+width=&ldquo;24px&rdquo;></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>employee_list_df<span style=color:#f92672>.</span>columns<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#39;name&#39;</span>,<span style=color:#e6db74>&#39;roll_number&#39;</span>]
+</span></span><span style=display:flex><span>employee_list_df
+</span></span></code></pre></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre><p></p><p>&lt;svg xmlns=&ldquo;<a href=http://www.w3.org/2000/svg%22>http://www.w3.org/2000/svg"</a> height=&ldquo;24px"viewBox=&ldquo;0 0 24 24&rdquo;
+width=&ldquo;24px&rdquo;></p><h2 id=useful-attributes-and-methods-in-panda>Useful attributes and methods in panda</h2><ul><li><code>.values</code> : A 2d numpy array of values</li><li><code>.columns</code> : Index of columns, column names</li><li><code>.index</code> : An index of rows, either row numbers or row names</li><li><code>.shape</code> :return number of rows and columns of dataframe</li><li><code>.head()</code> :return first few row of dataframe</li><li><code>.tail()</code> :return last few row of dataframe</li><li><code>.info()</code> :shows information of each of the columns such as data type and number of missing values</li><li><code>.describe()</code> :calculate few summary statistics for each column</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_dict<span style=color:#f92672>=</span>{
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#39;book_count&#39;</span>:[<span style=color:#ae81ff>272</span>,<span style=color:#ae81ff>491</span>,np<span style=color:#f92672>.</span>nan,<span style=color:#ae81ff>487</span>,<span style=color:#ae81ff>1356</span>,<span style=color:#ae81ff>226</span>,<span style=color:#ae81ff>969</span>,<span style=color:#ae81ff>360</span>,<span style=color:#ae81ff>311</span>,<span style=color:#ae81ff>3455</span>,np<span style=color:#f92672>.</span>nan,<span style=color:#ae81ff>210</span>,<span style=color:#ae81ff>995</span>,<span style=color:#ae81ff>896</span>,<span style=color:#ae81ff>710</span>,<span style=color:#ae81ff>274</span>,<span style=color:#ae81ff>201</span>,<span style=color:#ae81ff>376</span>,<span style=color:#ae81ff>566</span>,<span style=color:#ae81ff>239</span>],
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#39;rating&#39;</span> : [<span style=color:#e6db74>&#39;A&#39;</span>,<span style=color:#e6db74>&#39;C&#39;</span>, <span style=color:#e6db74>&#39;A&#39;</span>, <span style=color:#e6db74>&#39;B&#39;</span>,<span style=color:#e6db74>&#39;A&#39;</span>, np<span style=color:#f92672>.</span>nan,<span style=color:#e6db74>&#39;B&#39;</span>,<span style=color:#e6db74>&#39;A&#39;</span>,<span style=color:#e6db74>&#39;C&#39;</span>,<span style=color:#e6db74>&#39;A&#39;</span>, <span style=color:#e6db74>&#39;B&#39;</span>, <span style=color:#e6db74>&#39;A&#39;</span>,<span style=color:#e6db74>&#39;C&#39;</span>,<span style=color:#e6db74>&#39;A&#39;</span>,np<span style=color:#f92672>.</span>nan, <span style=color:#e6db74>&#39;B&#39;</span>,<span style=color:#e6db74>&#39;A&#39;</span>,<span style=color:#e6db74>&#39;C&#39;</span>,<span style=color:#e6db74>&#39;A&#39;</span>,<span style=color:#e6db74>&#39;C&#39;</span>], 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#39;author&#39;</span>:[<span style=color:#e6db74>&#39;Suzanne Collins&#39;</span>,<span style=color:#e6db74>&#39;J.K. Rowling&#39;</span>,<span style=color:#e6db74>&#39;Stephenie Meyer&#39;</span>, <span style=color:#e6db74>&#39;Harper Lee&#39;</span>, <span style=color:#e6db74>&#39;J.D. Salinger&#39;</span>, <span style=color:#e6db74>&#39;John Green&#39;</span>, \
+</span></span><span style=display:flex><span>              <span style=color:#e6db74>&#39;J.R.R. Tolkien&#39;</span>, <span style=color:#e6db74>&#39;J.D. Salinger&#39;</span>,<span style=color:#e6db74>&#39;Dan Brown&#39;</span>, <span style=color:#e6db74>&#39;Jane Austen&#39;</span>, <span style=color:#e6db74>&#39;Khaled Hosseini&#39;</span>, <span style=color:#e6db74>&#39;Veronica Roth&#39;</span>, <span style=color:#e6db74>&#39;John Green&#39;</span>,\
+</span></span><span style=display:flex><span>              <span style=color:#e6db74>&#39;George Orwell&#39;</span>, <span style=color:#e6db74>&#39;Anne Frank&#39;</span>, <span style=color:#e6db74>&#39;Stieg Larsson, Reg Keeland&#39;</span>, \
+</span></span><span style=display:flex><span>              <span style=color:#e6db74>&#39;Suzanne Collins&#39;</span>,<span style=color:#e6db74>&#39;J.K. Rowling&#39;</span>,np<span style=color:#f92672>.</span>nan, <span style=color:#e6db74>&#39;Suzanne Collins&#39;</span>],
+</span></span><span style=display:flex><span>           
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#39;title&#39;</span>:[<span style=color:#e6db74>&#39;The Hunger Games&#39;</span>,<span style=color:#e6db74>&#34;Harry Potter and the Philosopher&#39;s Stone&#34;</span>,<span style=color:#e6db74>&#39;Twilight&#39;</span>,<span style=color:#e6db74>&#39;To Kill a Mockingbird&#39;</span>,\
+</span></span><span style=display:flex><span>             <span style=color:#e6db74>&#39;The Great Gatsby&#39;</span>,<span style=color:#e6db74>&#39;The Fault in Our Stars&#39;</span>,<span style=color:#e6db74>&#39;The Hobbit or There and Back Again&#39;</span>, \
+</span></span><span style=display:flex><span>             <span style=color:#e6db74>&#39;The Catcher in the Rye&#39;</span>,<span style=color:#e6db74>&#39;Angels &amp; Demons &#39;</span>,<span style=color:#e6db74>&#39;Pride and Prejudice&#39;</span>,<span style=color:#e6db74>&#39;The Kite Runner &#39;</span>,\
+</span></span><span style=display:flex><span>             <span style=color:#e6db74>&#39;Divergent&#39;</span>,<span style=color:#e6db74>&#39;Nineteen Eighty-Four&#39;</span>,<span style=color:#e6db74>&#39;Animal Farm: A Fairy Story&#39;</span>,<span style=color:#e6db74>&#39;Het Achterhuis&#39;</span>,\
+</span></span><span style=display:flex><span>             <span style=color:#e6db74>&#39;Män som hatar kvinnor&#39;</span>,np<span style=color:#f92672>.</span>nan,<span style=color:#e6db74>&#39;Harry Potter and the Prisoner of Azkaban&#39;</span>,<span style=color:#e6db74>&#39; The Fellowship of the Ring&#39;</span>,<span style=color:#e6db74>&#39;Mockingjay&#39;</span>]
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df<span style=color:#f92672>=</span>pd<span style=color:#f92672>.</span>DataFrame(book_dict)
+</span></span><span style=display:flex><span>book_df<span style=color:#f92672>.</span>head()
+</span></span></code></pre></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre><p></p><p>&lt;svg xmlns=&ldquo;<a href=http://www.w3.org/2000/svg%22>http://www.w3.org/2000/svg"</a> height=&ldquo;24px"viewBox=&ldquo;0 0 24 24&rdquo;
+width=&ldquo;24px&rdquo;></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df<span style=color:#f92672>.</span>values
+</span></span></code></pre></div><pre><code>array([[272.0, 'A', 'Suzanne Collins', 'The Hunger Games'],
+       [491.0, 'C', 'J.K. Rowling',
+        &quot;Harry Potter and the Philosopher's Stone&quot;],
+       [nan, 'A', 'Stephenie Meyer', 'Twilight'],
+       [487.0, 'B', 'Harper Lee', 'To Kill a Mockingbird'],
+       [1356.0, 'A', 'J.D. Salinger', 'The Great Gatsby'],
+       [226.0, nan, 'John Green', 'The Fault in Our Stars'],
+       [969.0, 'B', 'J.R.R. Tolkien',
+        'The Hobbit or There and Back Again'],
+       [360.0, 'A', 'J.D. Salinger', 'The Catcher in the Rye'],
+       [311.0, 'C', 'Dan Brown', 'Angels &amp; Demons '],
+       [3455.0, 'A', 'Jane Austen', 'Pride and Prejudice'],
+       [nan, 'B', 'Khaled Hosseini', 'The Kite Runner '],
+       [210.0, 'A', 'Veronica Roth', 'Divergent'],
+       [995.0, 'C', 'John Green', 'Nineteen Eighty-Four'],
+       [896.0, 'A', 'George Orwell', 'Animal Farm: A Fairy Story'],
+       [710.0, nan, 'Anne Frank', 'Het Achterhuis'],
+       [274.0, 'B', 'Stieg Larsson, Reg Keeland',
+        'Män som hatar kvinnor'],
+       [201.0, 'A', 'Suzanne Collins', nan],
+       [376.0, 'C', 'J.K. Rowling',
+        'Harry Potter and the Prisoner of Azkaban'],
+       [566.0, 'A', nan, ' The Fellowship of the Ring'],
+       [239.0, 'C', 'Suzanne Collins', 'Mockingjay']], dtype=object)
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df<span style=color:#f92672>.</span>columns
+</span></span></code></pre></div><pre><code>Index(['book_count', 'rating', 'author', 'title'], dtype='object')
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df<span style=color:#f92672>.</span>index
+</span></span></code></pre></div><pre><code>RangeIndex(start=0, stop=20, step=1)
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df<span style=color:#f92672>.</span>shape
+</span></span></code></pre></div><pre><code>(20, 4)
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df<span style=color:#f92672>.</span>info()
+</span></span></code></pre></div><pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 20 entries, 0 to 19
+Data columns (total 4 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   book_count  18 non-null     float64
+ 1   rating      18 non-null     object 
+ 2   author      19 non-null     object 
+ 3   title       19 non-null     object 
+dtypes: float64(1), object(3)
+memory usage: 768.0+ bytes
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df<span style=color:#f92672>.</span>describe()
+</span></span></code></pre></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre><p></p><p>&lt;svg xmlns=&ldquo;<a href=http://www.w3.org/2000/svg%22>http://www.w3.org/2000/svg"</a> height=&ldquo;24px"viewBox=&ldquo;0 0 24 24&rdquo;
+width=&ldquo;24px&rdquo;></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df<span style=color:#f92672>.</span>describe(include<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;O&#34;</span>)
+</span></span></code></pre></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre><p></p><p>&lt;svg xmlns=&ldquo;<a href=http://www.w3.org/2000/svg%22>http://www.w3.org/2000/svg"</a> height=&ldquo;24px"viewBox=&ldquo;0 0 24 24&rdquo;
+width=&ldquo;24px&rdquo;></p><h2 id=summary-statistics>Summary Statistics</h2><ul><li><code>.median()</code></li><li><code>.mean()</code></li><li><code>.mode()</code></li><li><code>.max()</code></li><li><code>.min()</code></li><li><code>.var()</code></li><li><code>.std()</code></li><li><code>.sum()</code></li><li>.<code>value_counts()</code></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df[<span style=color:#e6db74>&#39;book_count&#39;</span>]<span style=color:#f92672>.</span>mean()
+</span></span></code></pre></div><pre><code>688.5555555555555
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df[<span style=color:#e6db74>&#39;author&#39;</span>]<span style=color:#f92672>.</span>value_counts()
+</span></span></code></pre></div><pre><code>Suzanne Collins               3
+J.K. Rowling                  2
+J.D. Salinger                 2
+John Green                    2
+Stephenie Meyer               1
+Harper Lee                    1
+J.R.R. Tolkien                1
+Dan Brown                     1
+Jane Austen                   1
+Khaled Hosseini               1
+Veronica Roth                 1
+George Orwell                 1
+Anne Frank                    1
+Stieg Larsson, Reg Keeland    1
+Name: author, dtype: int64
+</code></pre><h3 id=handling-missing-values>Handling missing values</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df<span style=color:#f92672>.</span>isna()<span style=color:#f92672>.</span>sum()
+</span></span></code></pre></div><pre><code>book_count    2
+rating        2
+author        1
+title         1
+dtype: int64
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>mean_book_count <span style=color:#f92672>=</span> book_df[<span style=color:#e6db74>&#34;book_count&#34;</span>]<span style=color:#f92672>.</span>mean()
+</span></span><span style=display:flex><span>book_df[<span style=color:#e6db74>&#34;book_count&#34;</span>]<span style=color:#f92672>.</span>fillna(mean_book_count, inplace<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>mode_of_ratings <span style=color:#f92672>=</span> book_df[<span style=color:#e6db74>&#34;rating&#34;</span>]<span style=color:#f92672>.</span>mode()[<span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span>book_df[<span style=color:#e6db74>&#34;rating&#34;</span>]<span style=color:#f92672>.</span>fillna(mode_of_ratings, inplace<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df<span style=color:#f92672>.</span>dropna(axis<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>, how<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;any&#39;</span>, thresh<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>, subset<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;author&#34;</span>], inplace<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span><span style=color:#75715e># axis: defines which direction the values are to be deleted</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># how: Determine if row or column is removed from DataFrame, when we have at least one NA or all</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># thresh: Require that many non-NA values</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># subset: Labels along other axis to consider</span>
+</span></span></code></pre></div><h3 id=iloc-vs-loc-for-slicing>iloc vs loc for slicing</h3><ul><li><p>loc: gets rows (and/or columns) with particular labels.</p></li><li><p>iloc: gets rows (and/or columns) at integer locations.</p></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df<span style=color:#f92672>.</span>iloc[:<span style=color:#ae81ff>5</span>]
+</span></span></code></pre></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre><p></p><p>&lt;svg xmlns=&ldquo;<a href=http://www.w3.org/2000/svg%22>http://www.w3.org/2000/svg"</a> height=&ldquo;24px"viewBox=&ldquo;0 0 24 24&rdquo;
+width=&ldquo;24px&rdquo;></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df<span style=color:#f92672>.</span>loc[:<span style=color:#ae81ff>2</span>,<span style=color:#e6db74>&#34;book_count&#34;</span>:<span style=color:#e6db74>&#34;author&#34;</span>]<span style=color:#75715e>#different than python slicing</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># book_df.iloc[:2,&#34;book_count&#34;:&#34;author&#34;] # throws error</span>
+</span></span></code></pre></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre><p></p><p>&lt;svg xmlns=&ldquo;<a href=http://www.w3.org/2000/svg%22>http://www.w3.org/2000/svg"</a> height=&ldquo;24px"viewBox=&ldquo;0 0 24 24&rdquo;
+width=&ldquo;24px&rdquo;></p><pre><code>  &lt;script&gt;
+    const buttonEl =
+      document.querySelector('#df-40dd7565-8c78-4a52-9c6e-61efe3160ff5 button.colab-df-convert');
+    buttonEl.style.display =
+      google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+    async function convertToInteractive(key) {
+      const element = document.querySelector('#df-40dd7565-8c78-4a52-9c6e-61efe3160ff5');
+      const dataTable =
+        await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                 [key], {});
+      if (!dataTable) return;
+
+      const docLinkHtml = 'Like what you see? Visit the ' +
+        '&lt;a target=&quot;_blank&quot; href=https://colab.research.google.com/notebooks/data_table.ipynb&gt;data table notebook&lt;/a&gt;'
+        + ' to learn more about interactive tables.';
+      element.innerHTML = '';
+      dataTable['output_type'] = 'display_data';
+      await google.colab.output.renderOutput(dataTable, element);
+      const docLink = document.createElement('div');
+      docLink.innerHTML = docLinkHtml;
+      element.appendChild(docLink);
+    }
+  &lt;/script&gt;
+&lt;/div&gt;
+</code></pre><h2 id=selection-and-assigning>Selection and assigning</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df[book_df[<span style=color:#e6db74>&#34;book_count&#34;</span>]<span style=color:#f92672>&gt;</span><span style=color:#ae81ff>300</span>]
+</span></span></code></pre></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre><p></p><p>&lt;svg xmlns=&ldquo;<a href=http://www.w3.org/2000/svg%22>http://www.w3.org/2000/svg"</a> height=&ldquo;24px"viewBox=&ldquo;0 0 24 24&rdquo;
+width=&ldquo;24px&rdquo;></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Adding new columns</span>
+</span></span><span style=display:flex><span>book_df[<span style=color:#e6db74>&#34;isAvailable&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span> <span style=color:#75715e># performs broadcasting to all rows</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># book_df.isAvailable = True # can not create new columns using dot operator</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Accessing columns</span>
+</span></span><span style=display:flex><span>book_df[<span style=color:#e6db74>&#34;isAvailable&#34;</span>]
+</span></span><span style=display:flex><span>book_df<span style=color:#f92672>.</span>isAvailable
+</span></span></code></pre></div><pre><code>0     True
+1     True
+2     True
+3     True
+4     True
+5     True
+6     True
+7     True
+8     True
+9     True
+10    True
+11    True
+12    True
+13    True
+14    True
+15    True
+16    True
+17    True
+18    True
+19    True
+Name: isAvailable, dtype: bool
+</code></pre><h2 id=grouping-and-sorting>Grouping and sorting</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df<span style=color:#f92672>.</span>groupby([<span style=color:#e6db74>&#34;author&#34;</span>])<span style=color:#f92672>.</span>sum()
+</span></span></code></pre></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre><p></p><p>&lt;svg xmlns=&ldquo;<a href=http://www.w3.org/2000/svg%22>http://www.w3.org/2000/svg"</a> height=&ldquo;24px"viewBox=&ldquo;0 0 24 24&rdquo;
+width=&ldquo;24px&rdquo;></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df<span style=color:#f92672>.</span>sort_values([<span style=color:#e6db74>&#34;author&#34;</span>, <span style=color:#e6db74>&#34;book_count&#34;</span>])<span style=color:#75715e>#try ascending=False</span>
+</span></span></code></pre></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre><p></p><p>&lt;svg xmlns=&ldquo;<a href=http://www.w3.org/2000/svg%22>http://www.w3.org/2000/svg"</a> height=&ldquo;24px"viewBox=&ldquo;0 0 24 24&rdquo;
+width=&ldquo;24px&rdquo;></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>book_df<span style=color:#f92672>.</span>rename(columns<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#39;author&#39;</span>: <span style=color:#e6db74>&#39;Author&#39;</span>, <span style=color:#e6db74>&#39;book_count&#39;</span>: <span style=color:#e6db74>&#39;Book_counts&#39;</span>})
+</span></span></code></pre></div><pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre><p></p><p>&lt;svg xmlns=&ldquo;<a href=http://www.w3.org/2000/svg%22>http://www.w3.org/2000/svg"</a> height=&ldquo;24px"viewBox=&ldquo;0 0 24 24&rdquo;
+width=&ldquo;24px&rdquo;></p></div></main><footer><p class="copyright text-muted">© All rights reserved. Powered by <a href=https://gohugo.io>Hugo</a> and <a href=https://github.com/calintat/minimal>Minimal</a>.</p></footer></body></html>
