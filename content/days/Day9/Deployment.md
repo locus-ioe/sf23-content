@@ -1,5 +1,5 @@
 ---
-title: "Day 10: How to build software the right way!"
+title: "Day 9: How to get your website out to the world!"
 date: 2022-07-09
 tags: []
 draft: false
@@ -7,7 +7,7 @@ draft: false
 
 # Deployment
 
-Untill now we have created django application and run it on our own machine. We can see our web app running on our browser on `localhost:8000`. Now its time to dimystify what this localhost:8000 thing is. To understand this we first need to understand three concepts IP addresses, ports and DNS(Domain Name System). Lets go through them one by one
+Until now we have created django application and run it on our own machine. We can see our web app running on our browser on `localhost:8000`. Now its time to dimystify what this localhost:8000 thing is. To understand this we first need to understand three concepts IP addresses, ports and DNS(Domain Name System). Lets go through them one by one
 
 ### IP Address
 
@@ -144,4 +144,6 @@ server {
 }
 ```
 
-This server block has one `listen` directive and two `location` directive, listen directive is used to configure port where nginx server listens. in the above example nginx server be listening on port `80`. First location block block tells that for every request forward it to `localhost:8000` and second location block specify that if ani paths has `/static/` in it then the static(files) content is from /var/www/static is delivered. for example if we request `locus.com.np/static/index.css` in the browser the request is not forwarded to django instead this static file is directly served by nignx. Our django project might geneerate static files like `css`, `images`, we can use `python manage.py collectstatic` commnad to collect these static files at once place and then use nginx directly to server these static content because nginx is very fast and optimized to serve such static files.
+This server block has one `listen` directive and two `location` directive, listen directive is used to configure port where nginx server listens. in the above example nginx server be listening on port `80`. First location block block tells that for every request forward it to `localhost:8000` and second location block specify that if any paths has `/static/` in it then the static(files) content is from /var/www/static is delivered. for example if we request `locus.com.np/static/index.css` in the browser the request is not forwarded to django instead this static file is directly served by nignx. Our django project might geneerate static files like `css`, `images`, we can use `python manage.py collectstatic` commnad to collect these static files at once place and then use nginx directly to server these static content because nginx is very fast and optimized to serve such static files.
+
+> written by Aayush Neupane
