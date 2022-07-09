@@ -14,9 +14,7 @@ Untill now we have created django application and run it on our own machine. We 
 IP stands for internet protocol. Millions of computers interconnected forms internet this internt connection is the connection formed with wires(optical fibres) and wireless communication. Fun fact:there are submarine cables running throught oceans which carry this website's content from our server in US to you.
 
 
-<img src="/attachments/Pasted%20image%2020220708102855.png" width =330>
-<img src="/attachments/Pasted%20image%2020220708102711.png" width =250>
-
+![](/attachments/bigimage.png)
 
 When we exhange message in the internet, message may include video, text audio, It always has some sending computer and some receiving computer. so how does computer know whom to send the message to? Computers use numbers to identify each other in the internet. To make these numbers human readble they are written in the format `192.168.100.1`. it starts from `0.0.0.0` to `255.255.255.255` all the number in between these ranges are called IP address, IPv4 address to be more specific. So lets say when you are reading from the `locus.com.np` site
 you were able to read this content because your computer asked some computer having address lets say `20.84.44.131` to send its content. So to get content from some website we need to memorize its IP address? not exactly this is where DNS come into the picture
