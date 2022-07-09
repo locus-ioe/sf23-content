@@ -13,7 +13,6 @@ Until now we have created django application and run it on our own machine. We c
 
 IP stands for internet protocol. Millions of computers interconnected forms internet this internt connection is the connection formed with wires(optical fibres) and wireless communication. Fun fact:there are submarine cables running throught oceans which carry this website's content from our server in US to you.
 
-
 ![](/attachments/bigimage.png)
 
 When we exhange message in the internet, message may include video, text audio, It always has some sending computer and some receiving computer. so how does computer know whom to send the message to? Computers use numbers to identify each other in the internet. To make these numbers human readble they are written in the format `192.168.100.1`. it starts from `0.0.0.0` to `255.255.255.255` all the number in between these ranges are called IP address, IPv4 address to be more specific. So lets say when you are reading from the `locus.com.np` site
@@ -113,34 +112,52 @@ Now we can stop the running django server, then again start the server but this 
 ### Using Nginx And Gunicorn
 
 Now that every thing is going well there is one last thing we need to configure. when we start the django server with `python manage.py runserver` the started server is called development server, it is called development server because its just for development, it is only suitable for single or couple of users. it cannot handle requests from thousands of user, so we need separate software which can handle many users and also implement correct security policies. `Nginx` is the example of such high performance web server. Now we need to install `nginx` software and configure it to receive all request coming to port `80` and then foreward this request to django server which will be running locally in some port.
-but django and `nginx` cannot directly communicate with each other so we need another software called `gunicorn` to fascilate communication between nginx and django. Gunicorm implements WSGI interface . WSGI is the specification which defines how web server should communicate with python web application frameworks like django.
+but django and `nginx` cannot directly communicate with each other so we need another software called `gunicorn` to facilitate communication between nginx and django. Gunicorm implements WSGI interface . WSGI is the specification which defines how web server should communicate with python web application frameworks like django.
 
 so our new workflow to setup our web server is to
 
 1. install nginx and gunicorn in our virtual machine
+   To install nginx, copy the following script to the remote host, save it in a file named `install.sh` and use `chmod +x install.sh` to make this file executable and then run this script using `./install.sh` it will start downloading and installing `nginx` packaage
+
+   `install.sh`
+
+   ```sh
+
+   	sudo apt install curl gnupg2 ca-certificates lsb-release ubuntu-keyring
+
+   	curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
+   		| sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+
+   	gpg --dry-run --quiet --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg
+
+   	echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+   	http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" \
+   		| sudo tee /etc/apt/sources.list.d/nginx.list
+
+   	echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+   	http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx" \
+   		| sudo tee /etc/apt/sources.list.d/nginx.list
+
+   	echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" \
+   		| sudo tee /etc/apt/preferences.d/99nginx
+
+   	sudo apt update
+   	sudo apt install nginx
+   ```
+
 1. start our django server not by `python manage.py runserver` but using command `gunicorn myproject.wsgi:application --bind 127.0.0.1:8000`. this command starts gunicorn server at IP address `127.0.0.1` and port `8000` here `127.0.0.1` is also special IP address which denotes current pc also called `localhost`.
 1. Configure nginx to start listen at port 80 and forewared all the request to `localhost:8000`, configuration file looks something like shown below.
 1. we need to copy this nginx configuration file to `/etc/nginx/conf.d/default` and reload the nginx server using `nginx -s reload` command
 
 ```
 server {
-
 	listen 80;
-
 	location / {
-
 		proxy_pass http://localhost:8000;
-
 	}
-
-
-
 	location /static/ {
-
 		alias /var/www/static/;
-
 	}
-
 }
 ```
 
