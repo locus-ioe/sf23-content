@@ -4,10 +4,7 @@ title = "Software Fellowship 2023"
 theme = "minimal"
 googleAnalytics = ""
 
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
+
 
 [params]
     author = "Aayush Neupane"
