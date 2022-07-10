@@ -1,6 +1,6 @@
 ---
 title: "Day 5: (Part 2) Data, Data and More Data!"
-date: 2022-07-09
+date: 2022-07-10
 tags: ["EDA"]
 draft: false
 ---
