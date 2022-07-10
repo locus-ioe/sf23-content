@@ -18,7 +18,7 @@
 </span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>COPY</span> requirements.txt .<span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>RUN</span> pip install -r requirements.txt <span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>RUN</span> pip install -r requirements.txt<span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>COPY</span> . .<span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
@@ -43,14 +43,14 @@
 </span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>RUN</span> apk add libpq-dev alpine-sdk libressl-dev libffi-dev <span style=color:#f92672>&amp;&amp;</span> pip3 install --upgrade pip <span style=color:#f92672>&amp;&amp;</span> pip3 install setuptools<span style=color:#f92672>==</span><span style=color:#ae81ff>45</span> wheel<span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>COPY</span> requirements.txt .<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>RUN</span> pip install -r requirements.txt <span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>RUN</span> pip install -r requirements.txt<span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>COPY</span> . .<span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>COPY</span> ./entrypoint.sh /<span style=color:#960050;background-color:#1e0010>
 </span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>ENTRYPOINT</span> [<span style=color:#e6db74>&#34;sh&#34;</span>, <span style=color:#e6db74>&#34;/entrypoint.sh&#34;</span>]<span style=color:#960050;background-color:#1e0010>
 </span></span></span></code></pre></div><ul><li>Then setup entrypoints in <a href=http://entrypoints.sh>entrypoints.sh</a> file to execute the commands to run python interpreter as below:</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/sh
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>
-</span></span><span style=display:flex><span>python manage.py migrate --no-input 
+</span></span><span style=display:flex><span>python manage.py migrate --no-input
 </span></span></code></pre></div><ul><li>We then write docker-compose.yml file to mention how different containers(one container for now but will come later) can run as below</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3.8&#34;</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#f92672>services</span>:
@@ -87,7 +87,7 @@
 </span></span><span style=display:flex><span>  <span style=color:#f92672>static</span>:
 </span></span></code></pre></div><p>Note that we have used volumes section at the end there that suggest where all the containers look for during communication. Since we are listening on port 80, we need to map any other port we decide to give access to outside user to port 80 (or 443 for https) on the container, because thats where our service will be listening.</p><p>Now we are again ready to docker-compose up. Lets try it. Wait a second it doesn’t work. Whats missing is that we are sending http request from the server but our django application doesn’t understand html requests, we need to include gunicorn command at <a href=http://entrypoints.sh>entrypoints.sh</a> file as:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/sh
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>
-</span></span><span style=display:flex><span>python manage.py migrate --no-input 
+</span></span><span style=display:flex><span>python manage.py migrate --no-input
 </span></span><span style=display:flex><span>python manage.py collectstatic --no-input
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>gunicorn software_fellowship_2023.wsgi:application --bind 0.0.0.0:8000
