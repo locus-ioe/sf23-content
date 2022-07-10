@@ -3,7 +3,7 @@ title: "Day 9: How to get your website out to the world!"
 date: 2022-07-10
 tags: []
 draft: false
-weight: 6
+weight: 4
 ---
 
 # Deployment
