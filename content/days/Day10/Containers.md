@@ -9,9 +9,9 @@ draft: false
 
 ## Introduction
 
-If you have been doing web development or programming in general, chances are you’ve already heard of containers or at least Docker. However without having to realize its importance, it doesn’t make sense to use them and understand them. 
+If you have been doing web development or programming in general, chances are you’ve already heard of containers or at least Docker. However without having to realize its importance, it doesn’t make sense to use them and understand them.
 
-Imagine if you need to build project with Django version 3.6 for one application.  You install the package through godly python tool called pip. `pip install django==3.6` But when you need to develop another application with version 4.0 you need to upgrade or uninstall and install django module. The problem is that, this only satisfies the requirements for one project at a time. Hence containers and other solutions come to the rescue. However we will logically prove how containers are more favorable than other solutions.
+Imagine if you need to build project with Django version 3.6 for one application. You install the package through godly python tool called pip. `pip install django==3.6` But when you need to develop another application with version 4.0 you need to upgrade or uninstall and install django module. The problem is that, this only satisfies the requirements for one project at a time. Hence containers and other solutions come to the rescue. However we will logically prove how containers are more favorable than other solutions.
 
 A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. In a way it works similar to virtual machines but not quite. Now what container does is for those two django application project discussed above, it creates different environments with different specifications. In this way, it increases flexibility and portability.
 
@@ -25,7 +25,7 @@ However the problem with python specific virtual environment are very clear, it 
 
 Programmers back in the days, used to manage different VMs to program applications with different requirements. VMs isolate the programs completely. But if you’ve ever tried to spin up VMs with a image, you know it is very slow at bootup. Not only that, it takes separate space and has much more processing overload. In first glance, Containers and VMs seem like same technology, but containers only runs on base kernel and limited userspace while VMs has full fledged operating system. This figure below shows some relief some comparision:
 
-Dont worry about all these terms used. These will not be used at all, however you’ll understand how layers of Container is formed later. 
+Dont worry about all these terms used. These will not be used at all, however you’ll understand how layers of Container is formed later.
 
 ![docker vs vms.png](/attachments/docker_vs_vms.png)
 
@@ -50,7 +50,7 @@ RUN apk add libpq-dev alpine-sdk libressl-dev libffi-dev && pip3 install --upgra
 
 COPY requirements.txt .
 
-RUN pip install -r requirements.txt 
+RUN pip install -r requirements.txt
 
 COPY . .
 
@@ -65,9 +65,9 @@ Lets build and run to see what it does. Don’t worry the explanation will come.
 
 Docker command: `docker build -t <image-name>` builds the docker image from the specification specified in Dockerfile. Image-name refers to the name of image, we can also specify tag as to indicate the version of image we are working on.
 
-`docker run <image-name>`  runs the instance of image. Different arguments like port no, file system, volumes etc can be included to create this instance. This instance is called a container.
+`docker run <image-name>` runs the instance of image. Different arguments like port no, file system, volumes etc can be included to create this instance. This instance is called a container.
 
-So what are images and containers, what do each represent? Images are simply the specifications for the instance or container to run. In Dockerfile, all the lines of codes written are specifications of how an instance should run. When we perform `docker build`, what is does is simply package all the specifications (it may fetch base/parent images which we’ll come later).  Containers however are the running instance of a image; that means the application is containarized with those specification (image) and different arguments can be specified to run it however we want. 
+So what are images and containers, what do each represent? Images are simply the specifications for the instance or container to run. In Dockerfile, all the lines of codes written are specifications of how an instance should run. When we perform `docker build`, what is does is simply package all the specifications (it may fetch base/parent images which we’ll come later). Containers however are the running instance of a image; that means the application is containarized with those specification (image) and different arguments can be specified to run it however we want.
 
 ## Parent Image
 
@@ -107,12 +107,12 @@ Port mapping is used to access the services running inside a docker container. 
 
 ## Volumes
 
-We also see volumes section in our yml file structure. It is the preferred method for persisting data. Since container is a instance running, any configurations that changes in that instance, once the container stops running; the data is lost. So volumes are used in the case. 
+We also see volumes section in our yml file structure. It is the preferred method for persisting data. Since container is a instance running, any configurations that changes in that instance, once the container stops running; the data is lost. So volumes are used in the case.
 
 - Volumes are stored in `\\wsl$\docker-desktop-data\data\docker\volumes` in windows’
 - Volumes are stored in `/var/lib/docker/volumes` in linux
 
-One thing that volumes are also used for is sharing data  or communicating between different containers.
+One thing that volumes are also used for is sharing data or communicating between different containers.
 
 ## Dockerizing Project
 
@@ -128,7 +128,7 @@ WORKDIR /usr/src/app
 RUN apk add libpq-dev alpine-sdk libressl-dev libffi-dev && pip3 install --upgrade pip && pip3 install setuptools==45 wheel
 
 COPY requirements.txt .
-RUN pip install -r requirements.txt 
+RUN pip install -r requirements.txt
 
 COPY . .
 COPY ./entrypoint.sh /
@@ -140,7 +140,7 @@ ENTRYPOINT ["sh", "/entrypoint.sh"]
 ```bash
 #!/bin/sh
 
-python manage.py migrate --no-input 
+python manage.py migrate --no-input
 ```
 
 - We then write docker-compose.yml file to mention how different containers(one container for now but will come later) can run as below
@@ -195,12 +195,12 @@ volumes:
 
 Note that we have used volumes section at the end there that suggest where all the containers look for during communication. Since we are listening on port 80, we need to map any other port we decide to give access to outside user to port 80 (or 443 for https) on the container, because thats where our service will be listening.
 
-Now we are again ready to docker-compose up. Lets try it. Wait a second it doesn’t work. Whats missing is that we are sending http request from the server but our django application doesn’t understand html requests, we need to include gunicorn command at [entrypoints.sh](http://entrypoints.sh) file as: 
+Now we are again ready to docker-compose up. Lets try it. Wait a second it doesn’t work. Whats missing is that we are sending http request from the server but our django application doesn’t understand html requests, we need to include gunicorn command at [entrypoints.sh](http://entrypoints.sh) file as:
 
 ```bash
 #!/bin/sh
 
-python manage.py migrate --no-input 
+python manage.py migrate --no-input
 python manage.py collectstatic --no-input
 
 gunicorn software_fellowship_2023.wsgi:application --bind 0.0.0.0:8000
@@ -212,8 +212,8 @@ Docker Hub is a docker registry service that hosts and distributes docker image
 
 - First create an account on Docker Hub
 - From shell type in `docker login` to login into your docker hub account
-- Create tag for your image so that you can push it as below: 
-`docker tag <local-project-image> <user-name>/<image-name>:<tag>`
+- Create tag for your image so that you can push it as below:
+  `docker tag <local-project-image> <user-name>/<image-name>:<tag>`
 - Now push it to the docker hub using `docker push <user-name>/<image-name>:<tag>`
 
 To pull the existing images into your local machine you do the above login procedure and type in:

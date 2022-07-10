@@ -1,6 +1,6 @@
 ---
 title: "Miscellaneous: Command line cheatsheet"
-date: 2022-07-09
+date: 2022-07-08
 tags: []
 draft: false
 ---

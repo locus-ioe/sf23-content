@@ -1,6 +1,6 @@
 ---
 title: "Day 9: How to get your website out to the world!"
-date: 2022-07-09
+date: 2022-07-10
 tags: []
 draft: false
 ---
@@ -64,6 +64,8 @@ Now you might assume the steps to deploy you site as, you can choose some name l
 Unfortunately its slightly more complicated than that. You don't get Public IP you only get Private IP, Private IP are given to your PC by your routers. But to be globally accessible you need public IP. There are only limited IP address in the world (about 4 billion) so assigning this IP to every device is not possible so there is concept of private IP, public IP and subnetting. There are lots of resource in the internet to learn about these concepts we will not cover all of them in this course but [here](https://www.youtube.com/watch?v=po8ZFG0Xc4Q) is the starting point. In this course we only need to understand that you cannot point some domain to your computer's IP address and host your site in your own PC because your PC does not have Public IP address.
 
 ### Getting Your Own Server Ready
+
+{{< youtube PB0cxKzJC-4 >}}
 
 So now we know that to host our website we need computer with public IP address, how can we get computer with public IP adderss? Here comes the term known as IAAS(Infracture as a service), there are cloud service providers which provides computers in rent, we can buy computer from them and use as we want.. Buying these computer is like buying infrastructure so the service is called Infrastructure as a service. These computers are charged on the basis of time(like monthly) or usage(how much cpu and ram you use). These remote computer are also called Virtual Private Server (VPS) or Virtual Machine (VM). Microsoft's [Azure](https://azure.microsoft.com/en-us/) and Amazon's [AWS](https://aws.amazon.com/) are some providers that provide IAAS.
 
