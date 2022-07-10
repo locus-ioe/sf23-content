@@ -1,3 +1,10 @@
+---
+title: "Miscellaneous: Command line cheatsheet"
+date: 2022-07-10
+tags: []
+draft: false
+---
+
 # Command line cheatsheet for Day 9
 
 ## Connect to remote host
@@ -114,5 +121,3 @@ stop service : `sudo systemctl stop nginx`
 test nginx configuration : `sudo nginx -t`
 
 reload configuration : `sudo nginx -s reload`
-
-
