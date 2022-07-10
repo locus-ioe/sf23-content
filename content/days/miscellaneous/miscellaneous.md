@@ -3,6 +3,7 @@ title: "Miscellaneous: Command line cheatsheet"
 date: 2022-07-08
 tags: []
 draft: false
+weight: 5
 ---
 
 # Command line cheatsheet for Day 9
