@@ -139,7 +139,9 @@ Learn more about markdown [here](https://github.com/tchapi/markdown-cheatsheet)
 
 # How to get help?
 
-- Google is your best friend. Don't know how to google like pro? click [here](https://www.youtube.com/watch?v=cEBkvm0-rg0)
+- Google is your best friend. Don't know how to google like pro? see the video.
+
+{{< youtube cEBkvm0-rg0 >}}
 
 - Our lord and savior: Stack Overflow Try to use stackoverflow early, Prefer stack overflow over other sites, can't stress this enough.
 
