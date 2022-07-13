@@ -6,6 +6,8 @@ draft: false
 weight: 1
 ---
 
+## Resource link [here](https://drive.google.com/drive/folders/1O0afZJMpGJYTLkdT_6cYWCBW8pcGgjDM?usp=sharing)
+
 # Software doesn't wear out
 
 There is important distinction between other engineering products and software product, lets take an example of the hardware,As time passes, issues in hardware increase due to lot of reason like friction, radiation and physical damages but it is not the case in software. Software product should evolve with time, due to patches and bugfixes software becomes robust as time passes, this is to say, failure rate decreases. This is to say the software doesn’t wear out. Thus software should be developed not manufactured.
@@ -15,7 +17,7 @@ There is important distinction between other engineering products and software p
 In early days of computing, writing software was not taken as project, it was taken as a simple task, the task performed by some genius looking guys called "Programmers". But soon hardware evolved and so the requirements for the software, people started to dream for large software powered systems. But there were failures like software running over-budget, over-time, and low quality softwares.
 In the late 1960s, it became clear that the development of software is different than manufacturing other products. In mid computing era people started to practice software development as a engineering problem, after that software development field has evolved as enginneering discipline, people started to develop software in large organized teams, created different softwares that help them organizie softwares they are writing, Version management, configuration management, release management tools were developed.Different tools are used at different stages of software development life cycle.
 
-![](/static/attachments/sdlc-tools.png)
+![](/attachments/sdlc-tools.png)
 
 # “Millenium Bug” or “Y2K
 
