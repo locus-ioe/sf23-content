@@ -108,6 +108,18 @@ He started it just for fun but ended up with such a large project. Firstly he wa
 
 # Open Source - Brief History
 
+Open source software is software with source code that anyone can inspect, modify, and enhance.Some software has source code that only the person, team, or organization who created it—and maintains exclusive control over it—can modify. People call this kind of software "proprietary" or "closed source" software. Open source software is different. Its authors make its source code available to others who would like to view that code, copy it, learn from it, alter it, or share it. LibreOffice and the GNU Image Manipulation Program are examples of open source software.
+
+## Popular figure
+
+Richard Stallman is an American free software movement activist and programmer. He campaigns for software to be distributed in such a manner that its users have the freedom to use, study, distribute, and modify that software. Software that ensures these freedoms is termed free software. Stallman launched the GNU Project, founded the Free Software Foundation.
+
+Stallman launched the GNU(GNU's Not Unix) Project in September 1983 to write a Unix-like computer operating system composed entirely of free software. With this, he also launched the free software movement. He has been the GNU project's lead architect and organizer, and developed a number of pieces of widely used GNU software including, among others, the GNU Compiler Collection, GNU Debugger and GNU Emacs text editor.
+
+Listen what he has to say about free and open source softwares
+
+{{< youtube Ag1AKIl_2GM >}}
+
 # Notion - Note taking software
 
 - Project Management and Note taking application
