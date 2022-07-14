@@ -2,10 +2,12 @@
 title: "Day 2, 3 and 4: Git, debugging and Python Basics and Intermediate"
 date: 2022-07-10
 tags: ["git", "python", "code"]
-authors: ["Aaditya"]
+authors: ["Aaditya Subedi"]
 draft: false
 weight: 2
 ---
+
+## Resource Link [here](https://drive.google.com/drive/folders/1FUed1LDZk41Cpot32-GhbDDzBSbDTURI?usp=sharing)
 
 # Python Guides
 
