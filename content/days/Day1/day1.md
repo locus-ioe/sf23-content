@@ -6,7 +6,7 @@ draft: false
 weight: 1
 ---
 
-## Resource link [here](https://drive.google.com/drive/folders/1O0afZJMpGJYTLkdT_6cYWCBW8pcGgjDM?usp=sharing)
+## Resource link [**here**](https://drive.google.com/drive/folders/1O0afZJMpGJYTLkdT_6cYWCBW8pcGgjDM?usp=sharing)
 
 # Software doesn't wear out
 

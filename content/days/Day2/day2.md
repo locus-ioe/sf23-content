@@ -7,7 +7,7 @@ draft: false
 weight: 2
 ---
 
-## Resource Link [here](https://drive.google.com/drive/folders/1FUed1LDZk41Cpot32-GhbDDzBSbDTURI?usp=sharing)
+## Resource Link [**here**](https://drive.google.com/drive/folders/1FUed1LDZk41Cpot32-GhbDDzBSbDTURI?usp=sharing)
 
 # Python Guides
 
