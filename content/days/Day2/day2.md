@@ -18,7 +18,7 @@ weight: 2
 
 Python is an interpreted, object-oriented, high-level, dynamically semantic programming language. It is particularly desirable for Rapid Application Development as well as for usage as a scripting or glue language to tie existing components together. Python's straightforward syntax prioritizes readability and makes it simple to learn, which lowers the cost of program maintenance. Python's support for modules and packages promotes the modularity and reuse of code in programs. For all popular platforms, the Python interpreter and the comprehensive standard library are freely distributable and available in source or binary form.
 
-—— Extracted from [here](https://www.python.org/doc/essays/blurb/)
+—— Extracted from [**here**](https://www.python.org/doc/essays/blurb/)
 
 # History of Python!
 
