@@ -7,6 +7,8 @@ draft: false
 weight: 2
 ---
 
+## Day 4 github [**link**](https://github.com/aayushprime/python-sf23)
+
 ## Resource Link [**here**](https://drive.google.com/drive/folders/1FUed1LDZk41Cpot32-GhbDDzBSbDTURI?usp=sharing)
 
 # Python Guides
