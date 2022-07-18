@@ -5,13 +5,9 @@ tags: ["EDA"]
 draft: false
 ---
 
-## Collab link for numpy and pandas[**link**](https://colab.research.google.com/drive/1f4DdhBsaVZ0BafAgMeZ5U_QWq-VK8ijL?usp=sharing
+## Collab link for numpy and pandas [**link**](https://colab.research.google.com/drive1f4DdhBsaVZ0BafAgMeZ5U_QWq-VK8ijL?usp=sharing)
 
-)
-
-## Collab link for Data analytics [**link**](https://colab.research.google.com/drive/1Zp7JOOOAj2Hq_g9_NJm_5jye4SkIKI3F?usp=sharing
-
-)
+## Collab link for Data analytics [**link**](https://colab.research.google.com/drive/1Zp7JOOOAj2Hq_g9_NJm_5jye4SkIKI3F?usp=sharing)
 
 # Welcome to Data Analytics
 
