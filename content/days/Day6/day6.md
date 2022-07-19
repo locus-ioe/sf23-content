@@ -3,6 +3,7 @@ title: "Day 6: Figma and web basics"
 date: 2022-07-10
 tags: []
 draft: false
+weight: 7
 ---
 
 # github link here [**link**](https://github.com/YachuJoshi/sf-web-basics)
