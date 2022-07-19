@@ -3,6 +3,7 @@ title: "Day 5: (Part 1) Data, Data and More Data!"
 date: 2022-07-10
 tags: ["numpy", "pandas"]
 draft: false
+weight: 6
 ---
 
 # Numpy
