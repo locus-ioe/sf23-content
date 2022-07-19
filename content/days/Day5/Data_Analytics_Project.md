@@ -3,6 +3,7 @@ title: "Day 5: (Part 2) Data, Data and More Data!"
 date: 2022-07-10
 tags: ["EDA"]
 draft: false
+weight: 5
 ---
 
 ## Collab link for numpy and pandas [**link**](https://colab.research.google.com/drive/1f4DdhBsaVZ0BafAgMeZ5U_QWq-VK8ijL?usp=sharing)
