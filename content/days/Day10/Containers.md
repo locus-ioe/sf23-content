@@ -3,7 +3,7 @@ title: "Day 10: Containarizing our Project"
 date: 2022-07-09
 tags: []
 draft: false
-weight: 6
+weight: 10
 ---
 
 # Containers
