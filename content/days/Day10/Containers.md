@@ -42,17 +42,15 @@ It comes in two flavors in Windows, one as windows container and linux container
 Before deep diving into the Docker World, first lets see what we are getting out of Docker containers. Lets create a Dockerfile first as below with the contents as:
 
 ```docker
-FROM python:3.8-alpine3.15
+FROM python:3.9.7-alpine
 
-WORKDIR /usr/src/app
+RUN pip install --upgrade pip
 
-RUN apk add libpq-dev alpine-sdk libressl-dev libffi-dev && pip3 install --upgrade pip && pip3 install setuptools==45 wheel
+COPY ./requirements.txt .
+RUN pip install -r requirements.txt
 
-COPY requirements.txt .
-
-RUN pip install -r requirements.txt 
-
-COPY . .
+COPY ./sf23 /app
+WORKDIR /app
 
 RUN python manage.py migrate
 ```
@@ -121,16 +119,15 @@ To dockerize our project we follow the following steps.
 - First write our Dockerfile as below:
 
 ```docker
-FROM python:3.8-alpine3.15
+FROM python:3.9.7-alpine
 
-WORKDIR /usr/src/app
+RUN pip install --upgrade pip
+COPY ./requirements.txt .
+RUN pip install -r requirements.txt
 
-RUN apk add libpq-dev alpine-sdk libressl-dev libffi-dev && pip3 install --upgrade pip && pip3 install setuptools==45 wheel
+COPY ./sf23 /app
+WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install -r requirements.txt 
-
-COPY . .
 COPY ./entrypoint.sh /
 ENTRYPOINT ["sh", "/entrypoint.sh"]
 ```
@@ -146,18 +143,19 @@ python manage.py migrate --no-input
 - We then write docker-compose.yml file to mention how different containers(one container for now but will come later) can run as below
 
 ```yaml
-version: "3.8"
+version: '3.9'
 
 services:
   web:
     volumes:
       - static:/static
-    env_file:
-      - .env
     build:
       context: .
     ports:
       - "8000:8000"
+
+volumes:
+  static:
 ```
 
 - `.dockerignore` ignores the files that images dont require in the project. We’ll empty for now.
@@ -175,8 +173,6 @@ services:
   web:
     volumes:
       - static:/static
-    env_file:
-      - .env
     build:
       context: .
     ports:
@@ -193,7 +189,13 @@ volumes:
   static:
 ```
 
-Note that we have used volumes section at the end there that suggest where all the containers look for during communication. Since we are listening on port 80, we need to map any other port we decide to give access to outside user to port 80 (or 443 for https) on the container, because thats where our service will be listening.
+Note that we have used volumes section at the end there that suggest where all the containers look for during communication. Since we are listening on port 80, we need to map any other port we decide to give access to outside user to port 80 (or 443 for https) on the container, because thats where our service will be listening. Since we are building off of `./nginx` location we need to add a Dockerfile in our nginx folder as well.
+
+```docker
+FROM nginx:1.19.0-alpine
+
+COPY ./default.conf /etc/nginx/conf.d/default.conf
+```
 
 Now we are again ready to docker-compose up. Lets try it. Wait a second it doesn’t work. Whats missing is that we are sending http request from the server but our django application doesn’t understand html requests, we need to include gunicorn command at [entrypoints.sh](http://entrypoints.sh) file as: 
 
@@ -203,8 +205,11 @@ Now we are again ready to docker-compose up. Lets try it. Wait a second it doesn
 python manage.py migrate --no-input 
 python manage.py collectstatic --no-input
 
-gunicorn software_fellowship_2023.wsgi:application --bind 0.0.0.0:8000
+gunicorn sf23.wsgi:application --bind 0.0.0.0:8000
 ```
+Note that it still doesn't work if you try to build because now we are using HTTP port that should be allowed in our development environment in settings.py inside of your project directory and set allowed hosts like this:
+`ALLOWED_HOSTS = ["*"]`
+Now finally we can `docker compose build --no-cache` to fresh build without previous caches and then `docker compose up` to run the containers.
 
 ## Docker Hub
 
