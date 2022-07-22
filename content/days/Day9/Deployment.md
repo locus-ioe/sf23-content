@@ -8,6 +8,7 @@ weight: 9
 
 # Github repo [**link**](https://github.com/Atomnp/sf23-django-day2)
 # Slides link [**link**](https://docs.google.com/presentation/d/1f1lzACxEycjlSCAkvHvWWT7uCJa-_jEBBJm6J17WCI0/edit?usp=sharing)
+# Instructions [**link**](https://www.notion.so/Django-App-Deployment-78a73e7c862944b098a8d1b0bed3bc23)
 
 # Deployment
 
