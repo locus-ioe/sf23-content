@@ -1,0 +1,75 @@
+body {
+    /* max-width: max-content; */
+    margin-left: 15%;
+    margin-right: 15%;
+    padding-bottom: 6rem;
+    background-color: #eeeeee;
+    }
+  aside {
+      background: #1f8dd6; /* same color as selected state on site menu */
+      padding: 0.3em 1em;
+      border-radius: 3px;
+      color: #fff;
+      margin-bottom: 2em;
+  }
+  textarea {
+    width: 100%;
+  }
+  .content-head {
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 2em 0 1em;
+  }
+  .is-center {
+    text-align: center;
+  }
+  .button-success {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    background: rgb(28, 184, 65); /* this is a green */
+  }
+  .button-xlarge {
+    font-size: 125%;
+  }
+  button {
+    float: right;
+  }
+  #name, #email {
+    width: 50%;
+  }
+  .honeypot-field {
+    display: none;
+  }
+  .middle{
+    text-align: center;
+  }
+  .image{
+    border-radius: 50%;
+    width: 10rem;
+  }
+  .image-container{
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    display: flex;
+    flex-direction: row;
+  }
+  .image-text{
+    align-self: center;
+    margin: 3rem;
+  }
+.color-text{
+    color: #414141;
+    margin-top: 1rem;
+}
+/* .hide-after, .gform{
+    border-left: 1px solid rgb(27, 27, 27);
+    border-right: 1px solid rgb(27, 27, 27);
+    background-color: #c5c5c5;
+}
+.gform{
+    padding: 0 5%;
+} */
