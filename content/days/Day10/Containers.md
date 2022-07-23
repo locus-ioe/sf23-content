@@ -84,7 +84,7 @@ Instead of doing this tedious job, we have a tool called compose that comes pre-
 Compose file configuration is stored in docker-compose.yml file. YAML is similar structure to JSON (dont worry if you don’t know what this is) but with indentation structure. A typical way to write docker-compose.yml for our django application is shown below:
 
 ```yaml
-version: "3.8"
+version: "3.9"
 
 services:
   web:
@@ -129,17 +129,11 @@ RUN pip install -r requirements.txt
 COPY ./sf23 /app
 WORKDIR /app
 
-COPY ./entrypoint.sh /
-ENTRYPOINT ["sh", "/entrypoint.sh"]
+RUN python manage.py migrate --no-input && python manage.py collectstatic --no-input
+
+CMD [ "python","manage.py", "runserver", "0.0.0.0:8000" ]
 ```
 
-- Then setup entrypoints in [entrypoints.sh](http://entrypoints.sh) file to execute the commands to run python interpreter as below:
-
-```bash
-#!/bin/sh
-
-python manage.py migrate --no-input
-```
 
 - We then write docker-compose.yml file to mention how different containers(one container for now but will come later) can run as below
 
@@ -168,7 +162,7 @@ volumes:
 In the Nginx configuration mentioned in previous module, we listen on port 80 (http port) to recieve request from the clients, then the nginx server fetches us the service from the location route and send it back to client. Keeping this in mind, in our docker-compose.yml file in the project directory, we add the following service:
 
 ```yaml
-version: "3.8"
+version: "3.9"
 
 services:
   web:
@@ -181,9 +175,9 @@ services:
   nginx:
     build: ./nginx
     volumes:
-      - static:/static
+      - static:/var/www/static
     ports:
-      - "8000:80"
+      - "80:80"
     depends_on:
       - web
 volumes:
@@ -198,15 +192,21 @@ FROM nginx:1.19.0-alpine
 COPY ./default.conf /etc/nginx/conf.d/default.conf
 ```
 
-Now we are again ready to docker-compose up. Lets try it. Wait a second it doesn’t work. Whats missing is that we are sending http request from the server but our django application doesn’t understand html requests, we need to include gunicorn command at [entrypoints.sh](http://entrypoints.sh) file as:
+The default.conf file has been described in our previous module. The same file is copied into nginx directory. Now we are again ready to docker-compose up. Lets try it. Wait a second it doesn’t work. Whats missing is that we are sending http request from the server but our django application doesn’t understand html requests, we need to use gunicorn command instead of runserver in Dockerfile
 
-```bash
-#!/bin/sh
+```Dockerfile
+FROM python:3.11.0b4-alpine3.16
 
-python manage.py migrate --no-input
-python manage.py collectstatic --no-input
+COPY ./requirements.txt /sf23/requirements.txt
+RUN pip install --upgrade pip
+ 
+WORKDIR /sf23
+RUN pip install -r requirements.txt
 
-gunicorn sf23.wsgi:application --bind 0.0.0.0:8000
+COPY ./sf23 /sf23
+
+RUN python manage.py migrate --no-input && python manage.py collectstatic --no-input
+CMD [ "gunicorn","sf23.wsgi:application", "--bind", "0.0.0.0:8000" ]
 ```
 Note that it still doesn't work if you try to build because now we are using HTTP port that should be allowed in our development environment in settings.py inside of your project directory and set allowed hosts like this:
 `ALLOWED_HOSTS = ["*"]`
