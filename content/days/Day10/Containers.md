@@ -144,7 +144,7 @@ CMD [ "python","manage.py", "runserver", "0.0.0.0:8000" ]
 version: '3.9'
 
 services:
-  web:
+  django:
     volumes:
       - static:/static
     build:
@@ -168,7 +168,7 @@ In the Nginx configuration mentioned in previous module, we listen on port 80 (h
 version: "3.9"
 
 services:
-  web:
+  django:
     volumes:
       - static:/static
     build:
@@ -182,7 +182,7 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - web
+      - django
 volumes:
   static:
 ```
