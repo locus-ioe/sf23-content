@@ -49,7 +49,7 @@
 </span></span></span></code></pre></div><ul><li>We then write docker-compose.yml file to mention how different containers(one container for now but will come later) can run as below</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.9&#39;</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#f92672>services</span>:
-</span></span><span style=display:flex><span>  <span style=color:#f92672>web</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>django</span>:
 </span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>:
 </span></span><span style=display:flex><span>      - <span style=color:#ae81ff>static:/static</span>
 </span></span><span style=display:flex><span>    <span style=color:#f92672>build</span>:
@@ -62,7 +62,7 @@
 </span></span></code></pre></div><ul><li><code>.dockerignore</code> ignores the files that images dont require in the project. We’ll empty for now.</li><li>Now we are ready to employ <code>docker compose build</code> to build the image.</li><li><code>docker compose up</code> to run the image.</li></ul><h2 id=adding-nginx>Adding Nginx</h2><p>In the Nginx configuration mentioned in previous module, we listen on port 80 (http port) to recieve request from the clients, then the nginx server fetches us the service from the location route and send it back to client. Keeping this in mind, in our docker-compose.yml file in the project directory, we add the following service:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3.9&#34;</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#f92672>services</span>:
-</span></span><span style=display:flex><span>  <span style=color:#f92672>web</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>django</span>:
 </span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>:
 </span></span><span style=display:flex><span>      - <span style=color:#ae81ff>static:/static</span>
 </span></span><span style=display:flex><span>    <span style=color:#f92672>build</span>:
@@ -76,7 +76,7 @@
 </span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>:
 </span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#34;80:80&#34;</span>
 </span></span><span style=display:flex><span>    <span style=color:#f92672>depends_on</span>:
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>web</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>django</span>
 </span></span><span style=display:flex><span><span style=color:#f92672>volumes</span>:
 </span></span><span style=display:flex><span>  <span style=color:#f92672>static</span>:
 </span></span></code></pre></div><p>Note that we have used volumes section at the end there that suggest where all the containers look for during communication. Since we are listening on port 80, we need to map any other port we decide to give access to outside user to port 80 (or 443 for https) on the container, because thats where our service will be listening. Since we are building off of <code>./nginx</code> location we need to add a Dockerfile in our nginx folder as well.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-docker data-lang=docker><span style=display:flex><span><span style=color:#66d9ef>FROM</span><span style=color:#e6db74> nginx:1.19.0-alpine</span><span style=color:#960050;background-color:#1e0010>
