@@ -198,7 +198,7 @@ COPY ./default.conf /etc/nginx/conf.d/default.conf
 The default.conf file has been described in our previous module. The same file is copied into nginx directory. Now we are again ready to docker-compose up. Lets try it. Wait a second it doesn’t work. Whats missing is that we are sending http request from the server but our django application doesn’t understand html requests, we need to use gunicorn command instead of runserver in Dockerfile
 
 ```Dockerfile
-FROM python:3.11.0b4-alpine3.16
+FROM python:3.9.7-alpine
 
 COPY ./requirements.txt /sf23/requirements.txt
 RUN pip install --upgrade pip
@@ -229,4 +229,4 @@ To pull the existing images into your local machine you do the above login proce
 
 - `docker pull <user-name>/<image-name>:<tag>`
 
-> written by Aagat
+> written by Aagat:)
