@@ -6,6 +6,10 @@ draft: false
 weight: 9
 ---
 
+# Github repo [**link**](https://github.com/Atomnp/sf23-django-day2)
+# Slides link [**link**](https://docs.google.com/presentation/d/1f1lzACxEycjlSCAkvHvWWT7uCJa-_jEBBJm6J17WCI0/edit?usp=sharing)
+# Instructions [**link**](https://www.notion.so/Django-App-Deployment-78a73e7c862944b098a8d1b0bed3bc23)
+
 # Deployment
 
 Until now we have created django application and run it on our own machine. We can see our web app running on our browser on `localhost:8000`. Now its time to dimystify what this localhost:8000 thing is. To understand this we first need to understand three concepts IP addresses, ports and DNS(Domain Name System). Lets go through them one by one
