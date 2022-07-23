@@ -6,7 +6,7 @@ draft: false
 weight: 10
 ---
 
-## Slides link [**link**](https://docs.google.com/presentation/d/1bTl---Bi3sT4NqAMeKOfJfRLLIb8LnIWpaksLjXoF3c/edit?usp=sharing)
+## Slides link [**link**](https://docs.google.com/presentation/d/1rIfVHfK80UZUwXRNOSFBScUr2ka3hE-UwSIT2XQ8Fc4/edit?usp=sharing)
 ## Github link [**link**](https://github.com/ankitpaudel20/sf23_django_lastday_docker)
 
 # Containers
